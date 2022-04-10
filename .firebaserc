@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "my-monthly-money-manager": {
+      "hosting": {
+        "app": [
+          "my-monthly-money-manager"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "my-monthly-money-manager"
+  }
+}
