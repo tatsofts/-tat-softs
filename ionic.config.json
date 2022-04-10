@@ -1,0 +1,7 @@
+{
+  "name": "tat-softs-ui",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
