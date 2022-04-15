@@ -1,3 +1,4 @@
+import { FirestoreListModule } from './../../../projects/firestore-list/src/lib/firestore-list.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +14,9 @@ import { FolderPage } from './folder.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FolderPageRoutingModule
+    FolderPageRoutingModule,
+    FirestoreListModule,
   ],
-  declarations: [FolderPage]
+  declarations: [FolderPage],
 })
 export class FolderPageModule {}

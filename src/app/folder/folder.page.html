@@ -14,8 +14,22 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <tat-json-form [jsonFormData]="jsonFormData"></tat-json-form>
+
+  <!-- <div id="container">
+    <tat-firestore-list
+      [listItemTemplate]="userItemTemplate"
+    ></tat-firestore-list>
+  </div> -->
 </ion-content>
+
+<ng-template #userItemTemplate let-item="item">
+  <ion-label>
+    <ion-text color="danger">
+      <h2>{{ item['name']}}</h2>
+    </ion-text>
+    <ion-text color="success">
+      <h3>{{ item['price']}}</h3>
+    </ion-text>
+  </ion-label>
+</ng-template>

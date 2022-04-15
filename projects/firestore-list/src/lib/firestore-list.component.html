@@ -1,0 +1,215 @@
+<ng-template #defaultListItemTemplate let-item="item">
+  <ion-label>
+    <!-- <pre>{{ item | json }}</pre> -->
+    <ng-container *ngFor="let key of getKeys(item)">
+      <ng-container *ngIf="key !== 'id'">
+        <h4>
+          {{ key | titlecase }} : <b>{{ item[key] | titlecase }}</b>
+        </h4>
+      </ng-container>
+    </ng-container>
+  </ion-label>
+</ng-template>
+<ng-container *ngIf="listData$ | async as listData; else loading">
+  <ion-text color="medium" *ngIf="listData.length === 0">
+    <h4 class="ion-text-center">No {{ titlePlural }} to show</h4>
+  </ion-text>
+  <ion-list lines="full" class="firestore-list">
+    <ion-item *ngFor="let item of listData" (click)="itemClick.emit(item)">
+      <ng-container
+        *ngTemplateOutlet="
+          listItemTemplate || defaultListItemTemplate;
+          context: { item: item }
+        "
+      ></ng-container>
+
+      <ion-button slot="end" fill="clear" (click)="popover.present($event)">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+      <ion-popover
+        #popover
+        [dismissOnSelect]="true"
+        [arrow]="true"
+        [showBackdrop]="true"
+      >
+        <ng-template>
+          <ion-content>
+            <ion-list lines="full">
+              <ion-item
+                (click)="editData = item; editModal = true"
+                [button]="true"
+                [detail]="false"
+              >
+                <ion-label>Edit</ion-label>
+                <ion-icon slot="start" name="create-outline"></ion-icon>
+              </ion-item>
+              <ion-item
+                (click)="presentDeleteConfirm(item)"
+                [button]="true"
+                [detail]="false"
+              >
+                <ion-label>Delete</ion-label>
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+  </ion-list>
+  <ion-fab
+    class="ion-margin-end ion-margin-bottom"
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+  >
+    <ion-fab-button color="light" (click)="addNewModal = true">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ng-container>
+
+<ion-modal
+  [isOpen]="addNewModal"
+  (didDismiss)="addNewModal = false"
+  [breakpoints]="[0.1, 0.8, 1]"
+  [initialBreakpoint]="0.8"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="addNewModal = false">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Add New {{ title }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list lines="full">
+        <form #sampleForm="ngForm" *ngIf="addNewModal">
+          <ion-item *ngFor="let input of inputs">
+            <ion-label position="floating">{{ input.placeholder }}</ion-label>
+            <ion-input
+              [disabled]="input.disabled"
+              [enterkeyhint]="input.enterkeyhint"
+              [max]="input.max"
+              [min]="input.min"
+              [name]="input.name"
+              [pattern]="input.pattern"
+              [placeholder]="input.placeholder"
+              [required]="input.required"
+              [type]="input.type"
+              [value]="input.value"
+              ngModel
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <div style="display: flex; width: 100%">
+              <ion-button
+                (click)="addItem(sampleForm)"
+                [disabled]="sampleForm?.invalid"
+                style="width: 50%"
+                expand="full"
+                slot="start"
+                >Save</ion-button
+              >
+              <ion-button
+                style="width: 50%"
+                (click)="addNewModal = false"
+                color="dark"
+                expand="full"
+                slot="end"
+              >
+                Cancel
+              </ion-button>
+            </div>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  [isOpen]="editModal"
+  (didDismiss)="editModal = false"
+  [breakpoints]="[0.1, 0.8, 1]"
+  [initialBreakpoint]="0.8"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="editModal = false">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Edit {{ title }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list lines="full">
+        <form #sampleForm="ngForm" *ngIf="editModal">
+          <ion-item *ngFor="let input of inputs">
+            <ion-label position="floating">{{ input.placeholder }}</ion-label>
+            <ion-input
+              [disabled]="input.disabled"
+              [enterkeyhint]="input.enterkeyhint"
+              [max]="input.max"
+              [min]="input.min"
+              [name]="input.name"
+              [pattern]="input.pattern"
+              [placeholder]="input.placeholder"
+              [required]="input.required"
+              [type]="input.type"
+              [value]="input.value"
+              [ngModel]="editData[input.name]"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <div style="display: flex; width: 100%">
+              <ion-button
+                (click)="updateItem(sampleForm)"
+                [disabled]="sampleForm?.invalid"
+                style="width: 50%"
+                expand="full"
+                slot="start"
+                >Save</ion-button
+              >
+              <ion-button
+                style="width: 50%"
+                (click)="editModal = false"
+                color="dark"
+                expand="full"
+                slot="end"
+                >Cancel
+              </ion-button>
+            </div>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ng-template #loading>
+  <ion-item *ngFor="let i of [1, 2, 3, 4]">
+    <ion-label>
+      <h1>
+        <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+      </h1>
+      <h1>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </h1>
+    </ion-label>
+    <ion-button slot="end" fill="clear" [disabled]="true">
+      <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ng-template>
