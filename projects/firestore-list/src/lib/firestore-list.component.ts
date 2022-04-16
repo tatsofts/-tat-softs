@@ -1,3 +1,4 @@
+import { JsonFormData } from './json-form/json-form.component';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -23,72 +24,24 @@ import {
 } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
-export interface IFormInputs {
-  disabled?: boolean;
-  enterkeyhint?:
-    | 'done'
-    | 'enter'
-    | 'go'
-    | 'next'
-    | 'previous'
-    | 'search'
-    | 'send'
-    | undefined;
-  max?: any | undefined;
-  min?: any | undefined;
-  name: string | undefined;
-  pattern?: string | undefined;
-  placeholder: string | undefined;
-  required?: boolean;
-  type:
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'search'
-    | 'tel'
-    | 'text'
-    | 'time'
-    | 'url'
-    | 'week';
-  value?: any;
-}
-
 @Component({
   selector: 'tat-firestore-list',
   templateUrl: './firestore-list.component.html',
   styleUrls: ['./firestore-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FirestoreListComponent implements OnInit {
+export class FirestoreListComponent<T> implements OnInit {
   @Input() listItemTemplate: TemplateRef<any>;
   @Input() tableName = 'notes';
   @Input() title = 'Note';
   @Input() titlePlural = 'Notes';
+  @Input() jsonFormData: JsonFormData;
   @Output() itemClick: EventEmitter<any> = new EventEmitter();
   addNewModal = false;
   editModal = false;
   editData: any;
   collectionRef;
-  inputs: IFormInputs[] = [
-    {
-      name: 'name',
-      value: 'test',
-      type: 'text',
-      required: true,
-      placeholder: 'Product Name',
-    },
-    {
-      name: 'price',
-      value: 1000,
-      type: 'number',
-      required: true,
-      placeholder: 'Product Price',
-    },
-  ];
-  listData$: Observable<any>;
+  @Input() listData$: Observable<T[]>;
   constructor(
     public routerOutlet: IonRouterOutlet,
     public alertController: AlertController,
@@ -96,7 +49,7 @@ export class FirestoreListComponent implements OnInit {
     public firestore: Firestore
   ) {
     this.collectionRef = collection(this.firestore, this.tableName);
-    this.listData$ = collectionData(this.collectionRef, { idField: 'id' });
+    this.listData$ = collectionData<T>(this.collectionRef, { idField: 'id' });
   }
 
   ngOnInit() {}

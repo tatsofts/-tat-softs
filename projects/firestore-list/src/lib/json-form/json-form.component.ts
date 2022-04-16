@@ -48,7 +48,12 @@ export interface JsonFormData {
 })
 export class JsonFormComponent {
   @Input() jsonFormData: JsonFormData;
+  @Input() defaultValues: any = {};
   @ViewChild('jsonForm') jsonForm: NgForm;
+
+  get FORM(): NgForm {
+    return this.jsonForm;
+  }
 
   constructor() {
     /* const x: IonInput;

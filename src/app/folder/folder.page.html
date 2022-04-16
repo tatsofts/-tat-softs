@@ -14,13 +14,14 @@
     </ion-toolbar>
   </ion-header>
 
-  <tat-json-form [jsonFormData]="jsonFormData"></tat-json-form>
+  <!-- <tat-json-form [jsonFormData]="jsonFormData"></tat-json-form> -->
 
-  <!-- <div id="container">
+  <div id="container">
     <tat-firestore-list
+      [jsonFormData]="useForm"
       [listItemTemplate]="userItemTemplate"
     ></tat-firestore-list>
-  </div> -->
+  </div>
 </ion-content>
 
 <ng-template #userItemTemplate let-item="item">

@@ -5,71 +5,204 @@
     }}</ion-label>
     <ng-container [ngSwitch]="control.type">
       <ng-container *ngSwitchCase="'date'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'datetime-local'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'email'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'month'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'number'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'password'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'search'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'tel'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'text'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'time'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'url'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'week'">
-        <ng-container
-          *ngTemplateOutlet="textInputTemRef; context: { control: control }"
-        ></ng-container>
+        <ion-input
+          [type]="control.type"
+          [clearInput]="true"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [max]="control?.validators?.max"
+          [min]="control?.validators?.min"
+          [email]="control?.validators?.email"
+          [pattern]="control?.validators?.pattern"
+        ></ion-input>
       </ng-container>
       <ng-container *ngSwitchCase="'select'">
         <ion-select
           *ngIf="control?.options?.dataProvider"
           placeholder="Select One"
+          [interface]="'alert'"
           [name]="control.name"
-          ngModel
+          [ngModel]="defaultValues[control.name]"
           [placeholder]="control?.placeholder"
           [required]="control?.validators?.required"
           [minlength]="control?.validators?.minlength"
@@ -88,7 +221,7 @@
       <ng-container *ngSwitchCase="'range'">
         <ion-range
           [name]="control.name"
-          [ngModel]="control.value"
+          [ngModel]="defaultValues[control.name]"
           [required]="control?.validators?.required"
           [min]="control?.validators?.min"
           [max]="control?.validators?.max"
@@ -116,25 +249,13 @@
         </ion-range>
       </ng-container>
       <ng-container *ngSwitchCase="'toggle'">
-        <ion-toggle [name]="control.name" [ngModel]="control.value"></ion-toggle>
+        <ion-toggle
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+        ></ion-toggle>
       </ng-container>
     </ng-container>
   </ion-item>
-  <ion-button type="submit">Submit</ion-button>
 </form>
 
-<ng-template #textInputTemRef let-control="control">
-  <ion-input
-    [type]="control.type"
-    [name]="control.name"
-    [ngModel]="control.value"
-    [placeholder]="control?.placeholder"
-    [required]="control?.validators?.required"
-    [minlength]="control?.validators?.minlength"
-    [maxlength]="control?.validators?.maxlength"
-    [max]="control?.validators?.max"
-    [min]="control?.validators?.min"
-    [email]="control?.validators?.email"
-    [pattern]="control?.validators?.pattern"
-  ></ion-input>
-</ng-template>
+<!-- <pre>{{ jsonForm.value | json }}</pre> -->

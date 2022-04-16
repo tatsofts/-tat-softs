@@ -89,46 +89,29 @@
 
     <ion-content>
       <ion-list lines="full">
-        <form #sampleForm="ngForm" *ngIf="addNewModal">
-          <ion-item *ngFor="let input of inputs">
-            <ion-label position="floating">{{ input.placeholder }}</ion-label>
-            <ion-input
-              [disabled]="input.disabled"
-              [enterkeyhint]="input.enterkeyhint"
-              [max]="input.max"
-              [min]="input.min"
-              [name]="input.name"
-              [pattern]="input.pattern"
-              [placeholder]="input.placeholder"
-              [required]="input.required"
-              [type]="input.type"
-              [value]="input.value"
-              ngModel
-            ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <div style="display: flex; width: 100%">
-              <ion-button
-                (click)="addItem(sampleForm)"
-                [disabled]="sampleForm?.invalid"
-                style="width: 50%"
-                expand="full"
-                slot="start"
-                >Save</ion-button
-              >
-              <ion-button
-                style="width: 50%"
-                (click)="addNewModal = false"
-                color="dark"
-                expand="full"
-                slot="end"
-              >
-                Cancel
-              </ion-button>
-            </div>
-          </ion-item>
-        </form>
+        <tat-json-form #jsonForm [jsonFormData]="jsonFormData"></tat-json-form>
+        <ion-item>
+          <div style="display: flex; width: 100%">
+            <ion-button
+              (click)="addItem(jsonForm.FORM)"
+              [disabled]="jsonForm.FORM?.invalid"
+              type="button"
+              style="width: 50%"
+              expand="full"
+              slot="start"
+              >Save</ion-button
+            >
+            <ion-button
+              style="width: 50%"
+              (click)="addNewModal = false"
+              color="dark"
+              expand="full"
+              slot="end"
+            >
+              Cancel
+            </ion-button>
+          </div>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ng-template>
@@ -154,45 +137,31 @@
 
     <ion-content>
       <ion-list lines="full">
-        <form #sampleForm="ngForm" *ngIf="editModal">
-          <ion-item *ngFor="let input of inputs">
-            <ion-label position="floating">{{ input.placeholder }}</ion-label>
-            <ion-input
-              [disabled]="input.disabled"
-              [enterkeyhint]="input.enterkeyhint"
-              [max]="input.max"
-              [min]="input.min"
-              [name]="input.name"
-              [pattern]="input.pattern"
-              [placeholder]="input.placeholder"
-              [required]="input.required"
-              [type]="input.type"
-              [value]="input.value"
-              [ngModel]="editData[input.name]"
-            ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <div style="display: flex; width: 100%">
-              <ion-button
-                (click)="updateItem(sampleForm)"
-                [disabled]="sampleForm?.invalid"
-                style="width: 50%"
-                expand="full"
-                slot="start"
-                >Save</ion-button
-              >
-              <ion-button
-                style="width: 50%"
-                (click)="editModal = false"
-                color="dark"
-                expand="full"
-                slot="end"
-                >Cancel
-              </ion-button>
-            </div>
-          </ion-item>
-        </form>
+        <tat-json-form
+          #jsonForm
+          [defaultValues]="editData"
+          [jsonFormData]="jsonFormData"
+        ></tat-json-form>
+        <ion-item>
+          <div style="display: flex; width: 100%">
+            <ion-button
+              (click)="updateItem(jsonForm.FORM)"
+              [disabled]="jsonForm.FORM"
+              style="width: 50%"
+              expand="full"
+              slot="start"
+              >Save</ion-button
+            >
+            <ion-button
+              style="width: 50%"
+              (click)="editModal = false"
+              color="dark"
+              expand="full"
+              slot="end"
+              >Cancel
+            </ion-button>
+          </div>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ng-template>

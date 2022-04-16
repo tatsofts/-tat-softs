@@ -10,6 +10,29 @@ import { ActivatedRoute } from '@angular/router';
 export class FolderPage implements OnInit {
   public folder: string;
 
+  useForm: JsonFormData = {
+    controls: [
+      {
+        name: 'name',
+        label: 'User Name',
+        value: '',
+        placeholder: 'Enter User Name',
+        position: 'floating',
+        type: 'text',
+        validators: { required: true, minlength: 10 },
+      },
+      {
+        name: 'price',
+        label: 'Provide Price',
+        value: '',
+        placeholder: 'Provide Price',
+        position: 'floating',
+        type: 'number',
+        validators: { required: true },
+      },
+    ],
+  };
+
   jsonFormData: JsonFormData = {
     controls: [
       {
@@ -52,8 +75,8 @@ export class FolderPage implements OnInit {
         },
         options: {
           icon: 'sunny',
-          min:'10',
-          max:'20',
+          min: '10',
+          max: '20',
         },
       },
       {
