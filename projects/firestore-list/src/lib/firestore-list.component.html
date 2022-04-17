@@ -146,7 +146,7 @@
           <div style="display: flex; width: 100%">
             <ion-button
               (click)="updateItem(jsonForm.FORM)"
-              [disabled]="jsonForm.FORM"
+              [disabled]="jsonForm?.FORM?.invalid"
               style="width: 50%"
               expand="full"
               slot="start"

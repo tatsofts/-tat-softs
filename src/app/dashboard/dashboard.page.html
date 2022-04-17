@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let module of modulesList">
+        <ion-card [routerLink]="[module.route]">
+          <ion-card-content
+            class="d-flex justify-content-center flex-column text-center"
+          >
+            <div>
+              <img
+                width="100"
+                [src]="module.icon"
+                style="width: 100px"
+              />
+            </div>
+            <h2 class="d-inline">{{module.name}}</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

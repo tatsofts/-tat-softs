@@ -148,6 +148,19 @@
           [pattern]="control?.validators?.pattern"
         ></ion-input>
       </ng-container>
+      <ng-container *ngSwitchCase="'textarea'">
+        <ion-textarea
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+          [placeholder]="control?.placeholder"
+          [required]="control?.validators?.required"
+          [minlength]="control?.validators?.minlength"
+          [maxlength]="control?.validators?.maxlength"
+          [maxlength]="control?.validators?.maxlength"
+          [minlength]="control?.validators?.minlength"
+          [pattern]="control?.validators?.pattern"
+        ></ion-textarea>
+      </ng-container>
       <ng-container *ngSwitchCase="'time'">
         <ion-input
           [type]="control.type"

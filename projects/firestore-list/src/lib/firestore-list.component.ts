@@ -36,6 +36,7 @@ export class FirestoreListComponent<T> implements OnInit {
   @Input() title = 'Note';
   @Input() titlePlural = 'Notes';
   @Input() jsonFormData: JsonFormData;
+  @Input() deleteCallback: (item: T, firestore: Firestore) => Promise<boolean>;
   @Output() itemClick: EventEmitter<any> = new EventEmitter();
   addNewModal = false;
   editModal = false;
@@ -47,12 +48,12 @@ export class FirestoreListComponent<T> implements OnInit {
     public alertController: AlertController,
     public loadingController: LoadingController,
     public firestore: Firestore
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.collectionRef = collection(this.firestore, this.tableName);
     this.listData$ = collectionData<T>(this.collectionRef, { idField: 'id' });
   }
-
-  ngOnInit() {}
 
   getKeys(item: any): string[] {
     return Object.keys(item).sort();
@@ -78,8 +79,12 @@ export class FirestoreListComponent<T> implements OnInit {
             const loading = await this.loadingController.create({
               message: 'Please wait...',
             });
+            loading.present();
             try {
-              await deleteDoc(noteDocRef);
+              const canDelete = await this.deleteCallback(item, this.firestore);
+              if (canDelete) {
+                await deleteDoc(noteDocRef);
+              }
               loading.dismiss();
             } catch (error) {
               console.log(error);
