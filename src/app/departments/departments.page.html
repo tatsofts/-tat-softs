@@ -17,7 +17,18 @@
 </ion-content>
 
 <ng-template #departmentItemTemplate let-item="item">
-  <ion-avatar slot="start">
+  <ion-popover [trigger]="'open-image-preview-button'+item['id']">
+    <ng-template>
+      <ion-content>
+        <ion-card>
+          <ion-card-content>
+            <img [src]="item['image']" *ngIf="item['image']" />
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+  <ion-avatar slot="start" [id]="'open-image-preview-button'+item['id']">
     <img [src]="item['image']" />
   </ion-avatar>
   <ion-label>

@@ -1,8 +1,20 @@
 <!-- <img [src]="value"> -->
 <!-- <ion-button (click)="isOpen = true">Click to open modal</ion-button> -->
 
+<ion-popover trigger="open-image-preview-button">
+  <ng-template>
+    <ion-content>
+      <ion-card>
+        <ion-card-content>
+          <img [src]="value" *ngIf="value" />
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
 <ion-item>
-  <ion-avatar slot="start">
+  <ion-avatar slot="start" id="open-image-preview-button">
     <img [src]="value" *ngIf="value" />
   </ion-avatar>
   <ion-grid fixed>
@@ -106,10 +118,7 @@
           >
             <ion-icon name="close"></ion-icon>
           </div>
-          <div
-            class="capture-button cancel"
-            (click)="showNextWebcam(true);"
-          >
+          <div class="capture-button cancel" (click)="showNextWebcam(true)">
             <ion-icon name="camera-reverse"></ion-icon>
           </div>
           <div class="capture-button cancel" (click)="toggleAudio()">
