@@ -13,9 +13,13 @@
       [listItemTemplate]="departmentItemTemplate"
     ></tat-firestore-list>
   </div>
+
 </ion-content>
 
 <ng-template #departmentItemTemplate let-item="item">
+  <ion-avatar slot="start">
+    <img [src]="item['image']" />
+  </ion-avatar>
   <ion-label>
     <h2>{{ item['name']}}</h2>
     <h3>{{ item['description']}}</h3>

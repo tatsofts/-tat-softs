@@ -31,7 +31,7 @@ interface JsonFormControls {
   label: string;
   placeholder?: string;
   value: string | number;
-  type: TextFieldTypes | 'textarea' | 'select' | 'range' | 'toggle';
+  type: TextFieldTypes | 'textarea' | 'select' | 'range' | 'toggle' | 'camera';
   position: 'floating' | 'fixed' | 'stacked';
   options?: JsonFormControlOptions;
   required?: boolean;

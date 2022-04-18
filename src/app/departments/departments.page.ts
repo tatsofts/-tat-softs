@@ -8,6 +8,7 @@ import { JsonFormData } from 'projects/firestore-list/src/lib/json-form/json-for
   styleUrls: ['./departments.page.scss'],
 })
 export class DepartmentsPage implements OnInit {
+  profileImage = '';
   departmentForm: JsonFormData = {
     controls: [
       {
@@ -26,6 +27,15 @@ export class DepartmentsPage implements OnInit {
         placeholder: 'Enter Department Description',
         position: 'floating',
         type: 'textarea',
+        validators: { required: true },
+      },
+      {
+        name: 'image',
+        label: 'Department Image',
+        value: '',
+        placeholder: 'Provide Department image',
+        position: 'floating',
+        type: 'camera',
         validators: { required: true },
       },
     ],

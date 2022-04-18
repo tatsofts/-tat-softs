@@ -1,6 +1,6 @@
 <form #jsonForm="ngForm" (ngSubmit)="onSubmit()">
   <ion-item *ngFor="let control of jsonFormData?.controls">
-    <ion-label [position]="control.position">{{
+    <ion-label *ngIf="control.type != 'camera'" [position]="control.position">{{
       control.label | titlecase
     }}</ion-label>
     <ng-container [ngSwitch]="control.type">
@@ -266,6 +266,14 @@
           [name]="control.name"
           [ngModel]="defaultValues[control.name]"
         ></ion-toggle>
+      </ng-container>
+      <ng-container *ngSwitchCase="'camera'">
+        <tat-webcam
+          [label]="control.label | titlecase"
+          [required]="control?.validators?.required"
+          [name]="control.name"
+          [ngModel]="defaultValues[control.name]"
+        ></tat-webcam>
       </ng-container>
     </ng-container>
   </ion-item>
