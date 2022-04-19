@@ -42,6 +42,7 @@ export class FirestoreListComponent<T> implements OnInit {
   addNewModal = false;
   editModal = false;
   editData: any;
+  newData: any = {};
   collectionRef;
   @Input() listData$: Observable<T[]>;
   constructor(
@@ -63,6 +64,9 @@ export class FirestoreListComponent<T> implements OnInit {
   ngOnInit() {
     this.collectionRef = collection(this.firestore, this.tableName);
     this.listData$ = collectionData<T>(this.collectionRef, { idField: 'id' });
+    this.jsonFormData.controls.forEach((c) => {
+      this.newData[c.name] = c.value;
+    });
   }
 
   getKeys(item: any): string[] {

@@ -3,5 +3,40 @@
 </ion-header>
 
 <ion-content>
+  <div id="container">
+    <tat-firestore-list #doctorsFormRef
+      [tableName]="'doctors'"
+      [title]="'Doctor'"
+      [titlePlural]="'Doctors'"
+      [jsonFormData]="doctorsForm"
+      [deleteCallback]="deleteCallback"
+      [listItemTemplate]="doctorsItemTemplate"
+    ></tat-firestore-list>
+  </div>
+
 
 </ion-content>
+
+<ng-template #doctorsItemTemplate let-item="item">
+  <ion-popover [trigger]="'open-image-preview-button'+item['id']">
+    <ng-template>
+      <ion-content>
+        <ion-card>
+          <ion-card-content>
+            <img [src]="item['photo']" *ngIf="item['photo']" />
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+  <ion-avatar slot="start" [id]="'open-image-preview-button'+item['id']">
+    <img [src]="item['photo']" />
+  </ion-avatar>
+  <ion-label>
+    <h2>{{ item['name']}}</h2>
+    <h3>{{ item['gender']}}</h3>
+    <h3>{{ item['email']}}</h3>
+    <h3>{{ item['phone']}}</h3>
+    <h3>{{ item['country']}}</h3>
+  </ion-label>
+</ng-template>
