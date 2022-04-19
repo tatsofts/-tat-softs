@@ -29,7 +29,7 @@ export class DepartmentsPage implements OnInit {
         type: 'textarea',
         validators: { required: true },
       },
-      {
+      /* {
         name: 'image',
         label: 'Department Image',
         value: '',
@@ -37,13 +37,13 @@ export class DepartmentsPage implements OnInit {
         position: 'floating',
         type: 'camera',
         validators: { required: true },
-      },
+      }, */
     ],
   };
 
   constructor() {}
   async deleteCallback(data: any, firestore: Firestore): Promise<boolean> {
-    return new Promise<boolean>((resolve) => setTimeout(resolve, 1000, false));
+    return new Promise<boolean>((resolve) => setTimeout(resolve, 1000, true));
   }
 
   ngOnInit() {}

@@ -17,7 +17,7 @@
 </ion-content>
 
 <ng-template #departmentItemTemplate let-item="item">
-  <ion-popover [trigger]="'open-image-preview-button'+item['id']">
+  <!-- <ion-popover [trigger]="'open-image-preview-button'+item['id']">
     <ng-template>
       <ion-content>
         <ion-card>
@@ -30,7 +30,7 @@
   </ion-popover>
   <ion-avatar slot="start" [id]="'open-image-preview-button'+item['id']">
     <img [src]="item['image']" />
-  </ion-avatar>
+  </ion-avatar> -->
   <ion-label>
     <h2>{{ item['name']}}</h2>
     <h3>{{ item['description']}}</h3>

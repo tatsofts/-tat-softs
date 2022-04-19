@@ -21,6 +21,7 @@ import {
   AlertController,
   IonRouterOutlet,
   LoadingController,
+  ToastController,
 } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
@@ -47,8 +48,17 @@ export class FirestoreListComponent<T> implements OnInit {
     public routerOutlet: IonRouterOutlet,
     public alertController: AlertController,
     public loadingController: LoadingController,
+    public toastController: ToastController,
     public firestore: Firestore
   ) {}
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+    });
+    toast.present();
+  }
 
   ngOnInit() {
     this.collectionRef = collection(this.firestore, this.tableName);
@@ -84,6 +94,7 @@ export class FirestoreListComponent<T> implements OnInit {
               const canDelete = await this.deleteCallback(item, this.firestore);
               if (canDelete) {
                 await deleteDoc(noteDocRef);
+                this.presentToast(`${this.title} is deleted successfully`);
               }
               loading.dismiss();
             } catch (error) {
@@ -108,6 +119,7 @@ export class FirestoreListComponent<T> implements OnInit {
       await addDoc(notesRef, form.value);
       form.resetForm({});
       this.addNewModal = false;
+      this.presentToast(`New ${this.title} is added successfully`);
       loading.dismiss();
     } catch (error) {
       console.log(error);
@@ -128,6 +140,7 @@ export class FirestoreListComponent<T> implements OnInit {
       await updateDoc(noteDocRef, { ...form.value });
       form.resetForm({});
       this.editModal = false;
+      this.presentToast(`${this.title} is updated successfully`);
       loading.dismiss();
     } catch (error) {
       console.log(error);
