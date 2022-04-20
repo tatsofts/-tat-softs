@@ -13,6 +13,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
 
@@ -66,7 +67,10 @@ export class WebcamComponent implements ControlValueAccessor, Validator {
   @Input() required = false;
   @Input() label = '';
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    public alertController: AlertController,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   public viewDidEnter(): void {
     const muteCamera = localStorage.getItem('mute-camera');
@@ -100,6 +104,29 @@ export class WebcamComponent implements ControlValueAccessor, Validator {
     // string => move to device with given deviceId
     this.cameraLoading = true;
     this.nextWebcam.next(directionOrDeviceId);
+  }
+
+  async clearImage() {
+    const alert = await this.alertController.create({
+      header: 'Clear Confirmation',
+      message: 'Are you sure! Do you want to Clear Image?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.value = null;
+            this.saveImage();
+            this.changeDetectorRef.detectChanges();
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 
   saveImage() {

@@ -134,9 +134,9 @@ export class DoctorsPage implements OnInit {
       },
       {
         name: 'photo',
-        label: 'Doctor Photo',
+        label: 'Capture or Upload Doctor Photo',
         value: '',
-        placeholder: 'Doctor Photo',
+        placeholder: 'Capture or Upload Doctor Photo',
         position: 'floating',
         type: 'camera',
         validators: { required: true },

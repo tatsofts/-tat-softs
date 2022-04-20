@@ -1,3 +1,4 @@
+import { FirestoreListModule } from 'projects/firestore-list/src/public-api';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,8 +16,9 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     IonicModule,
     SharedModule,
-    PatientsPageRoutingModule
+    FirestoreListModule,
+    PatientsPageRoutingModule,
   ],
-  declarations: [PatientsPage]
+  declarations: [PatientsPage],
 })
 export class PatientsPageModule {}

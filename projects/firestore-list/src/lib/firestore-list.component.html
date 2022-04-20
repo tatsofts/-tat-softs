@@ -73,14 +73,25 @@
   [isOpen]="addNewModal"
   (didDismiss)="addNewModal = false"
   [breakpoints]="[0.1, 0.8, 1]"
-  [initialBreakpoint]="0.8"
+  [initialBreakpoint]="1"
 >
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="end">
-          <ion-button (click)="addNewModal = false">
-            <ion-icon slot="icon-only" name="close"></ion-icon>
+          <ion-button
+            color="primary"
+            fill="solid"
+            (click)="addItem(jsonForm.FORM)"
+            [disabled]="jsonForm.FORM?.invalid"
+            type="button"
+          >
+            <ion-icon slot="start" name="save"></ion-icon>
+            Save
+          </ion-button>
+          <ion-button color="dark" (click)="addNewModal = false" fill="solid">
+            <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+            Cancel
           </ion-button>
         </ion-buttons>
         <ion-title>Add New {{ title }}</ion-title>
@@ -89,29 +100,11 @@
 
     <ion-content>
       <ion-list lines="full">
-        <tat-json-form #jsonForm [defaultValues]="newData" [jsonFormData]="jsonFormData"></tat-json-form>
-        <ion-item>
-          <div style="display: flex; width: 100%">
-            <ion-button
-              (click)="addItem(jsonForm.FORM)"
-              [disabled]="jsonForm.FORM?.invalid"
-              type="button"
-              style="width: 50%"
-              expand="full"
-              slot="start"
-              >Save</ion-button
-            >
-            <ion-button
-              style="width: 50%"
-              (click)="addNewModal = false"
-              color="dark"
-              expand="full"
-              slot="end"
-            >
-              Cancel
-            </ion-button>
-          </div>
-        </ion-item>
+        <tat-json-form
+          #jsonForm
+          [defaultValues]="newData"
+          [jsonFormData]="jsonFormData"
+        ></tat-json-form>
       </ion-list>
     </ion-content>
   </ng-template>
@@ -121,14 +114,25 @@
   [isOpen]="editModal"
   (didDismiss)="editModal = false"
   [breakpoints]="[0.1, 0.8, 1]"
-  [initialBreakpoint]="0.8"
+  [initialBreakpoint]="1"
 >
   <ng-template>
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="end">
-          <ion-button (click)="editModal = false">
-            <ion-icon slot="icon-only" name="close"></ion-icon>
+          <ion-button
+            color="primary"
+            fill="solid"
+            (click)="updateItem(jsonForm.FORM)"
+            [disabled]="jsonForm.FORM?.invalid"
+            type="button"
+          >
+            <ion-icon slot="start" name="save"></ion-icon>
+            Save
+          </ion-button>
+          <ion-button color="dark" (click)="editModal = false" fill="solid">
+            <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+            Cancel
           </ion-button>
         </ion-buttons>
         <ion-title>Edit {{ title }}</ion-title>
@@ -142,26 +146,6 @@
           [defaultValues]="editData"
           [jsonFormData]="jsonFormData"
         ></tat-json-form>
-        <ion-item>
-          <div style="display: flex; width: 100%">
-            <ion-button
-              (click)="updateItem(jsonForm.FORM)"
-              [disabled]="jsonForm?.FORM?.invalid"
-              style="width: 50%"
-              expand="full"
-              slot="start"
-              >Save</ion-button
-            >
-            <ion-button
-              style="width: 50%"
-              (click)="editModal = false"
-              color="dark"
-              expand="full"
-              slot="end"
-              >Cancel
-            </ion-button>
-          </div>
-        </ion-item>
       </ion-list>
     </ion-content>
   </ng-template>
