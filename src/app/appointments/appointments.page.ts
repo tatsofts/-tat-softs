@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appointments.page.scss'],
 })
 export class AppointmentsPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  tatIonSelectFilter(searchText: string): void {
+    console.log('searchText', searchText);
   }
-
 }

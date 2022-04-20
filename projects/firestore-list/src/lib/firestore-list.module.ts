@@ -1,3 +1,4 @@
+import { IonSelectFilterDirective } from './ion-select-filter/ion-select-filter.directive';
 import { WebcamComponent } from './webcam/webcam.component';
 import { JsonFormComponent } from './json-form/json-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +9,12 @@ import { NgModule } from '@angular/core';
 import { WebcamModule } from 'ngx-webcam';
 
 @NgModule({
-  declarations: [FirestoreListComponent, JsonFormComponent, WebcamComponent],
+  declarations: [
+    FirestoreListComponent,
+    JsonFormComponent,
+    WebcamComponent,
+    IonSelectFilterDirective,
+  ],
   imports: [
     WebcamModule,
     IonicModule,
@@ -16,6 +22,11 @@ import { WebcamModule } from 'ngx-webcam';
     FormsModule,
     ReactiveFormsModule,
   ],
-  exports: [FirestoreListComponent, JsonFormComponent, WebcamComponent],
+  exports: [
+    FirestoreListComponent,
+    JsonFormComponent,
+    WebcamComponent,
+    IonSelectFilterDirective,
+  ],
 })
 export class FirestoreListModule {}
