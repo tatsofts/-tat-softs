@@ -3,5 +3,11 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-item>
+    <ion-label>Gender</ion-label>
+    <ion-select [selectFilter]="false" (tatIonSelectFilter)="tatIonSelectFilter($event)" placeholder="Select One">
+      <ion-select-option value="f">Female</ion-select-option>
+      <ion-select-option value="m">Male</ion-select-option>
+    </ion-select>
+  </ion-item>
 </ion-content>

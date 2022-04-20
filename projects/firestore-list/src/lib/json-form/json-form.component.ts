@@ -1,6 +1,5 @@
 import { NgForm } from '@angular/forms';
 import { Component, Input, ViewChild } from '@angular/core';
-import { IonInput } from '@ionic/angular';
 import { TextFieldTypes } from '@ionic/core';
 
 interface JsonFormValidators {
@@ -20,6 +19,8 @@ interface JsonFormControlOptions {
   step?: string;
   icon?: string;
   multiple?: boolean;
+  selectFilter?: boolean;
+  tatIonSelectFilter?: (searchText: string) => void;
   dataProvider?: {
     data: any[];
     labelField: string;

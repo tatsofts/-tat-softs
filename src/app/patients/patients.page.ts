@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patients.page.scss'],
 })
 export class PatientsPage implements OnInit {
-
   profileImage = '';
+  cities = [
+    { id: 'vizag', label: 'Vizag' },
+    { id: 'vijayawada', label: 'Vijayawada' },
+    { id: 'tirupati', label: 'Tirupati' },
+  ];
   patientsForm: JsonFormData = {
     controls: [
       {
@@ -121,12 +125,10 @@ export class PatientsPage implements OnInit {
         position: 'floating',
         type: 'select',
         options: {
+          selectFilter: true,
+          tatIonSelectFilter: this.tatIonSelectFilter.bind(this),
           dataProvider: {
-            data: [
-              { id: 'vizag', label: 'Vizag' },
-              { id: 'vijayawada', label: 'Vijayawada' },
-              { id: 'tirupati', label: 'Tirupati' },
-            ],
+            data: this.cities,
             labelField: 'label',
             idField: 'id',
           },
@@ -152,4 +154,19 @@ export class PatientsPage implements OnInit {
 
   ngOnInit() {}
 
+  tatIonSelectFilter(searchText: string): void {
+    this.patientsForm.controls[7].options.dataProvider.data =
+      this.cities.filter((d) => {
+        if (
+          d.label
+            .trim()
+            .toLowerCase()
+            .indexOf(searchText.trim().toLowerCase()) >= 0
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+  }
 }

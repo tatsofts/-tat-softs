@@ -214,6 +214,8 @@
           *ngIf="control?.options?.dataProvider"
           placeholder="Select One"
           [interface]="'alert'"
+          [selectFilter]="control.options?.selectFilter"
+          (tatIonSelectFilter)="control.options?.tatIonSelectFilter($event)"
           [name]="control.name"
           [ngModel]="defaultValues[control.name]"
           [placeholder]="control?.placeholder"
